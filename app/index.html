@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Super Hóquei</title>
+    <script
+      type="module"
+      src="https://cdn.jsdelivr.net/npm/@pwabuilder/pwainstall"
+    ></script>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.js"></script>
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker.register("/service-worker.js").then((reg) => {
+            console.log("Service worker registered.", reg);
+          });
+        });
+      }
+    </script>
+  </body>
+</html>
