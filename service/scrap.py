@@ -5,6 +5,7 @@ import json
 from pathlib import Path
 from git import Repo
 from datetime import datetime
+import socket
 
 # Get HTML from FPP website
 response = requests.get("http://hp.fpp.pt/agenda1.php?epoca=2021")
@@ -83,11 +84,11 @@ with open("../app/src/data.json", "w") as f:
 
 # Add games file to repo
 home_path = Path.home()
-repo_path = home_path / "Projects/super_hoquei"
+repo_path = home_path / "projects/super_hoquei"
 repo = Repo(str(repo_path))
 
 repo.git.add(update=True)
 today = datetime.now().strftime("%Y/%m/%d %H:%M:%S")
-repo.index.commit(f"Update games file ({today})")
+repo.index.commit(f"[Bot: {socket.gethostname()}] Update games file ({today})")
 origin = repo.remote(name="origin")
 origin.push()
