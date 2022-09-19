@@ -8,7 +8,8 @@ from datetime import datetime
 import socket
 
 # Get HTML from FPP website
-response = requests.get("http://hp.fpp.pt/agenda1.php?epoca=2021")
+headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36 Edge/12.246" }
+response = requests.get("https://hp.fpp.pt/agenda1.php?epoca=2022", headers=headers)
 html = response.text
 
 # Convert games to structured format
@@ -36,6 +37,7 @@ for i, competition in enumerate(competitions):
             "competition": competition.get_text().strip(),
         }
         games.append(game)
+print(games)
 
 # DB connection
 conn = sqlite3.connect("sh.db")
