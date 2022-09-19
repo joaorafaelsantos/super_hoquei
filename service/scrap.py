@@ -37,7 +37,6 @@ for i, competition in enumerate(competitions):
             "competition": competition.get_text().strip(),
         }
         games.append(game)
-print(games)
 
 # DB connection
 conn = sqlite3.connect("sh.db")
